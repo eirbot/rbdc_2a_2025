@@ -61,10 +61,11 @@ uint16_t read_rx(){
       i++;
     }
     //tu met ce que tu veux ici, reception[j] correspond au j eme bit de la réponse (si tu veux enlever le e0 tu prends pas reception[0])
+    /*
     for(int j=0;j<i;j++){
       Serial.write(reception[j]);
     }
-  
+    */
     uint16_t sortie = 0;
     sortie =((uint16_t)reception[1])<<8 | (uint16_t)reception[2];
     // uint8_t test_fort = sortie>>8;
@@ -140,14 +141,14 @@ uint16_t get_stepper_encoder(motor_side motor) {
         // TODO: get current encoder value for motor left
         //  encoder = ...
         Set_params_no_data(ADDR_STP_0, read_encoder);
-        delayMicroseconds(750);
+        //delayMicroseconds(750);
         encoder = read_rx();
         //encoder = 
     } else if (motor == motor_side::motor_right) {
         // TODO: get current encoder value for motor right
         //  encoder = ...
         Set_params_no_data(ADDR_STP_1, read_encoder);
-        delayMicroseconds(750);
+        //delayMicroseconds(750);
         encoder = read_rx();
     }
 

@@ -3,6 +3,8 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+//coucou
+
 
 #include "robot_eirbot.h"
 #include <Arduino.h>
@@ -29,15 +31,19 @@ void setup() {
 }
 
 void loop() {
-
+    
     // Do the square indefinitely
-    robot_goto(1.0, 0.0);
-    robot_goto(1.0, 1.0);
-    robot_goto(0.0, 1.0);
-    robot_goto(0.0, 0.0);
+    robot_goto(1.0, 0.0, true);
+
+    delay(5000);
+    robot_goto(0.0, 0.0, true);
+    //robot_goto(1.0, 1.0);
+    //robot_goto(0.0, 1.0);
+    //robot_goto(0.0, 0.0);
 
     // Wait 5 sec and do another square
     delay(5000); // in ms
+    
 }
 
 

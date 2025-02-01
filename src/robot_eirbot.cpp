@@ -52,6 +52,7 @@ void robot_goto(float x, float y, bool blocking, sixtron::RBDC_reference referen
             delay(10);
         }
     }
+    Serial.print("Target reached\n");
 }
 
 /* ######################  RBDC CONTROL LOOP   ############################################ */
@@ -83,8 +84,8 @@ void control(void *pvParameters) {
     // TODO: update the values !!
     sixtron::RBDC_params rbdc_params;
     rbdc_params.rbdc_format = sixtron::RBDC_format::two_wheels_robot;
-    rbdc_params.max_output_dv = 1.0f; // in [m/s]
-    rbdc_params.max_output_dtheta = 8.0f; // in [rad/s]
+    rbdc_params.max_output_dv = 0.5f; // in [m/s]
+    rbdc_params.max_output_dtheta = 1.0f; // in [rad/s]
     rbdc_params.can_go_backward = true;
     rbdc_params.dt_seconds = dt_pid;
     rbdc_params.final_theta_precision = DEG_TO_RAD(3);
@@ -97,13 +98,13 @@ void control(void *pvParameters) {
     rbdc_params.pid_param_dteta.Kp = 1.0f;
     rbdc_params.pid_param_dteta.Ki = 0.0f;
     rbdc_params.pid_param_dteta.Kd = 0.0f;
-    rbdc_params.pid_param_dteta.ramp = 1.75f;
+    //rbdc_params.pid_param_dteta.ramp = 1.75f;
 
     // Dv, or linear speed, PID parameters
     // TODO: update the values !!
-    rbdc_params.pid_param_dv.Kp = 2.0f;
-    rbdc_params.pid_param_dv.Ki = 0.1f;
-    rbdc_params.pid_param_dv.Kd = 0.25f;
+    rbdc_params.pid_param_dv.Kp = 1.0f;
+    rbdc_params.pid_param_dv.Ki = 0.0f;
+    rbdc_params.pid_param_dv.Kd = 0.0f;
     // rbdc_params.pid_param_dv.ramp = 0.5f;
 
     rbdc = new sixtron::RBDC(odom, mobile_base, rbdc_params);
